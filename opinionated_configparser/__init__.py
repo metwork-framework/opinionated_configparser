@@ -54,12 +54,6 @@ class OpinionatedConfigParser(configparser.ConfigParser):
             self.configuration_name = configuration_name.lower()
         else:
             self.configuration_name = MFCONFIG
-        if "delimiters" not in kwargs:
-            kwargs["delimiters"] = ("=",)
-        if "comment_prefixes" not in kwargs:
-            kwargs["comment_prefixes"] = ("#",)
-        if "interpolation" not in kwargs:
-            kwargs["interpolation"] = configparser.ExtendedInterpolation()
         if "default_section" in kwargs:
             # we can't use configparser default_section feature
             # so we will emulate later in the code
