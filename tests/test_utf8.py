@@ -1,18 +1,22 @@
+# -*- coding: utf-8 -*-
+
 import six
-import pytest
 from opinionated_configparser import OpinionatedConfigParser
 
 
+if six.PY2:
+    UNICODE = u"ééé"
+else:
+    UNICODE = "ééé"
+
 TEST_DICT1 = {
     "section1": {
-        "key1": "ééé",
+        "key1": UNICODE
     }
 }
 
 
-def test_python3():
-    if six.PY2:
-        pytest.skip("python3 test only")
+def test_unicode():
     x = OpinionatedConfigParser()
     x.read_dict(TEST_DICT1)
-    assert x.get("section1", "key1") == "ééé"
+    assert x.get("section1", "key1") == UNICODE

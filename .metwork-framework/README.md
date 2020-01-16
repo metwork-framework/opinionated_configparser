@@ -1,9 +1,12 @@
 ## What is it?
 
-This is an opinionated Python3 thin layer over the [Python configparser library](https://docs.python.org/3/library/configparser.html) to deal with:
+This is an opinionated Python2/Python3 thin layer over the [Python configparser library](https://docs.python.org/3/library/configparser.html) to deal with:
 
 - configuration variants (PROD, DEV...) expressed as alternative keys in ini file
 - (optional) [envtpl](https://github.com/metwork-framework/envtpl) support within configuration values (so you can use [Jinja2](https://jinja.palletsprojects.com/en/2.10.x/) placeholders in configuration values)
+
+For Python2, we use [Python3 configparser backport](https://pypi.org/project/configparser/).
+
 
 ## Concepts
 

@@ -1,6 +1,10 @@
-import configparser
 import sys
 import os
+
+if sys.version_info[:2] < (3, 5):
+    from backports import configparser
+else:
+    import configparser
 
 try:
     from envtpl import render_string
