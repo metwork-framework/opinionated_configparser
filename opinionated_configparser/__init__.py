@@ -1,19 +1,17 @@
 import sys
 import os
+import jinja2
 
 if sys.version_info[:2] < (3, 5):
+    # pylint: disable=E0401
     from backports import configparser
 else:
+    # pylint: disable=E0401
     import configparser
-
-try:
-    from envtpl import render_string
-except Exception:
-    def render_string(*args, **kwargs):
-        raise Exception("envtpl.render_string() not available")
 
 
 MFCONFIG = os.environ.get("MFCONFIG", "GENERIC").lower()
+IS_PYTHON_2 = sys.version_info < (3, 0)
 
 
 def get_real_option(option):
@@ -43,14 +41,25 @@ def get_score(variant, configuration_name):
     return 0
 
 
+class Jinja2Interpolation(configparser.Interpolation):
+
+    def __init__(self, jinja2_context, **template_kwargs):
+        if "undefined" not in template_kwargs:
+            template_kwargs["undefined"] = jinja2.Undefined
+        self.__template_kwargs = template_kwargs
+        self.__jinja2_context = jinja2_context
+        configparser.Interpolation.__init__(self)
+
+    def before_get(self, parser, section, option, value, defaults):
+        template = jinja2.Template(value, **self.__template_kwargs)
+        return template.render(self.__jinja2_context)
+
+
 class OpinionatedConfigParser(configparser.ConfigParser):
     def __init__(
         self,
         configuration_name=None,
         ignore_sections_starting_with="_",
-        use_envtpl=False,
-        envtpl_extra_variables={},
-        envtpl_extra_search_paths=[],
         *args,
         **kwargs
     ):
@@ -65,9 +74,19 @@ class OpinionatedConfigParser(configparser.ConfigParser):
         else:
             self.__default_section = None
         kwargs["default_section"] = None
-        self.use_envtpl = use_envtpl
-        self.envtpl_extra_variables = envtpl_extra_variables
-        self.envtpl_extra_search_paths = envtpl_extra_search_paths
+        if "interpolation" not in kwargs:
+            if IS_PYTHON_2:
+                tmp = {}
+                for x, y in os.environ.items():
+                    try:
+                        tmp[x] = y.decode('utf8')
+                    except Exception:
+                        print(x)
+                        # probably a unicode error
+                        pass
+                kwargs["interpolation"] = Jinja2Interpolation(tmp)
+            else:
+                kwargs["interpolation"] = Jinja2Interpolation(os.environ)
         self.ignore_sections_starting_with = ignore_sections_starting_with
         configparser.ConfigParser.__init__(self, *args, **kwargs)
 
@@ -99,13 +118,6 @@ class OpinionatedConfigParser(configparser.ConfigParser):
                     # not better score
                     return
             value = self.get(read_section, option)
-            if self.use_envtpl:
-                value = render_string(
-                    value,
-                    die_on_missing_variable=False,
-                    extra_variables=self.envtpl_extra_variables,
-                    extra_search_paths=self.envtpl_extra_search_paths,
-                )
             tmp[write_section][real_option] = (score, value)
 
         has_default = (

@@ -3,7 +3,7 @@
 This is an opinionated Python2/Python3 thin layer over the [Python configparser library](https://docs.python.org/3/library/configparser.html) to deal with:
 
 - configuration variants (PROD, DEV...) expressed as alternative keys in ini file
-- (optional) [envtpl](https://github.com/metwork-framework/envtpl) support within configuration values (so you can use [Jinja2](https://jinja.palletsprojects.com/en/2.10.x/) placeholders in configuration values)
+- [jinja2](https://jinja.palletsprojects.com/) as (optional) interpolation method for configuration values
 
 For Python2, we use [Python3 configparser backport](https://pypi.org/project/configparser/).
 
@@ -85,9 +85,22 @@ Configuration name | selected value for `debug` key | comment
 `QA5` | `0` | the `QA5` variant does not exist and there is no inheritance because there is no `underscore`
 `QA_5` | `6` | `QA` level of inheritance
 
-### envtpl usage inside configuration values
+### jinja2 usage inside configuration values
 
-FIXME
+By default, we use [jinja2](https://jinja.palletsprojects.com/) as interpolation method
+for configuration values. The Jinja2 context is initialized with environment variables.
+
+So with this example:
+```ini
+[group1]
+key=This is a Jinja2 test value: {{HOME}}
+```
+
+You will get the `{{HOME}}` placeholder replaced by the corresponding environment variable value.
+
+Missing variables will be replaced by the empty string (without errors).
+
+You can define your own Jinja2 context by adding `interpolation=opinionated_configparser.Jinja2Interpolation(jinja2_context)` to the `OpinionatedConfigParser` constructor call.
 
 ## Usage
 
@@ -122,3 +135,17 @@ print(parser.get("section1", "key1"))
 # use the parser object exactly as configparser.ConfigParser one
 # [...]
 ```
+
+## FAQ
+
+### What about if I don't want to use Jinja2 as interpolation method?
+
+Just pass `interpolation=None` keyword argument in `OpinionatedConfigParser`
+constructor.
+
+Or use `interpolation=configparser.BasicInterpolation()` to get the default
+interpolation method of `configparser` API.
+
+### What about if I want to use different jinja2 template options?
+
+Just pass `interpolation=opinionated_configparser.Jinja2Interpolation(jinja2_context, **jinja2_template_kwargs)` keyword argument in `OpinionatedConfigParser` constructor.
