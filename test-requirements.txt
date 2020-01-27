@@ -6,4 +6,3 @@ flake8>=3.5.0
 coverage>=4.5.2
 codecov>=2.0.15
 six>=1.12.0
--e git+https://github.com/metwork-framework/envtpl.git#egg=envtpl
