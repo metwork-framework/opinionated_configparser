@@ -1,14 +1,15 @@
 # CHANGELOG
 
 
-## [Unreleased]
+
+## v0.0.2 (2020-01-27)
 
 ### New Features
-- replace envtpl2 by jinja2
-- don't change default ConfigParser arguments
-- don't change default arguments
-- python2 support
 - initial version
+- python2 support
+- don't change default arguments
+- don't change default ConfigParser arguments
+- replace envtpl2 by jinja2
 
 
 
