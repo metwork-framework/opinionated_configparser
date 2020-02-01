@@ -2,6 +2,19 @@
 
 
 
+## v0.0.3 (2020-01-31)
+
+### New Features
+
+
+### Bug Fixes
+- fix pypi packaging
+- fix pypi packaging
+
+
+
+
+
 ## v0.0.2 (2020-01-27)
 
 ### New Features
