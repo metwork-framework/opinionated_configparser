@@ -6,7 +6,8 @@
 
 
 
-[![Drone CI](http://metwork-framework.org:8000/api/badges/metwork-framework/opinionated_configparser/status.svg)](http://metwork-framework.org:8000/metwork-framework/opinionated_configparser)
+
+[![GitHub CI](https://github.com/metwork-framework/opinionated_configparser/workflows/CI/badge.svg?branch=master)](https://github.com/metwork-framework/opinionated_configparser/actions?query=workflow%3ACI&branch=master)
 [![Maintenance](https://github.com/metwork-framework/resources/blob/master/badges/maintained.svg)]()
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/metwork-framework/opinionated_configparser/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/metwork-framework/opinionated_configparser/?branch=master)
 [![codecov](https://codecov.io/gh/metwork-framework/opinionated_configparser/branch/master/graph/badge.svg)](https://codecov.io/gh/metwork-framework/opinionated_configparser)
