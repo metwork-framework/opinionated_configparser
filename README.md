@@ -110,10 +110,10 @@ for configuration values. The Jinja2 context is initialized with environment var
 So with this example:
 ```ini
 [group1]
-key=This is a Jinja2 test value: {{HOME}}
+key=This is a Jinja2 test value: /home/mfserv
 ```
 
-You will get the `{{HOME}}` placeholder replaced by the corresponding environment variable value.
+You will get the `/home/mfserv` placeholder replaced by the corresponding environment variable value.
 
 Missing variables will be replaced by the empty string (without errors).
 
