@@ -15,6 +15,8 @@
 
 [//]: # (TABLE_OF_CONTENTS_PLACEHOLDER)
 
+
+
 ## What is it?
 
 This is an opinionated Python2/Python3 thin layer over the [Python configparser library](https://docs.python.org/3/library/configparser.html) to deal with:
