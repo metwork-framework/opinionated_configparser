@@ -1,9 +1,8 @@
 # opinionated_configparser
 
-[//]: # (automatically generated from https://github.com/metwork-framework/resources/blob/master/cookiecutter/_%7B%7Bcookiecutter.repo%7D%7D/README.md)
+[//]: # (automatically generated from https://github.com/metwork-framework/github_organization_management/blob/master/common_files/README.md)
 
 **Status (master branch)**
-
 
 
 
@@ -12,8 +11,6 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/metwork-framework/opinionated_configparser/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/metwork-framework/opinionated_configparser/?branch=master)
 [![codecov](https://codecov.io/gh/metwork-framework/opinionated_configparser/branch/master/graph/badge.svg)](https://codecov.io/gh/metwork-framework/opinionated_configparser)
 
-
-[//]: # (TABLE_OF_CONTENTS_PLACEHOLDER)
 
 
 
@@ -168,11 +165,6 @@ interpolation method of `configparser` API.
 ### What about if I want to use different jinja2 template options?
 
 Just pass `interpolation=opinionated_configparser.Jinja2Interpolation(jinja2_context, **jinja2_template_kwargs)` keyword argument in `OpinionatedConfigParser` constructor.
-
-
-
-
-
 
 
 
