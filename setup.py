@@ -16,7 +16,7 @@ setup(
     author="Fabien MARTY",
     author_email="fabien.marty@gmail.com",
     name="opinionated_configparser",
-    version="0.0.3",
+    version="0.0.5",
     license="MIT",
     python_requires='>=2.7',
     url="https://github.com/metwork-framework/opinionated_configparser",
