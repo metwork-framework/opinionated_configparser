@@ -10,12 +10,15 @@ else:
     import configparser
 
 
-MFCONFIG = os.environ.get("MFCONFIG", "GENERIC").lower()
 IS_PYTHON_2 = sys.version_info < (3, 0)
 
 
 def get_real_option(option):
     return option.split("[")[0]
+
+
+def get_default_configuration_name():
+    return os.environ.get("MFCONFIG", "GENERIC").lower()
 
 
 def get_variant(option):
@@ -24,7 +27,7 @@ def get_variant(option):
     tmp = option.split("[")[1].split("]")[0]
     if len(tmp) == 0:
         return None
-    return tmp
+    return tmp.lower()
 
 
 def get_score(variant, configuration_name):
@@ -66,7 +69,7 @@ class OpinionatedConfigParser(configparser.ConfigParser):
         if configuration_name is not None:
             self.configuration_name = configuration_name.lower()
         else:
-            self.configuration_name = MFCONFIG
+            self.configuration_name = get_default_configuration_name()
         if "default_section" in kwargs:
             # we can't use configparser default_section feature
             # so we will emulate later in the code

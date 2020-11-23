@@ -9,7 +9,7 @@ TEST_DICT1 = {
     },
     "section1": {
         "key1": "value1",
-        "key1[foo]": "value2",
+        "key1[fOo]": "value2",
         "key1[foo_bar]": "value3",
         "key2": "value4"
     },
