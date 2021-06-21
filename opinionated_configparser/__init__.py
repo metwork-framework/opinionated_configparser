@@ -14,7 +14,11 @@ IS_PYTHON_2 = sys.version_info < (3, 0)
 
 
 def get_real_option(option):
-    return option.split("[")[0]
+    if "[" not in option:
+        return option
+    if not option.endswith("]"):
+        return option
+    return option.split("[", 1)[0]
 
 
 def get_default_configuration_name():
@@ -24,7 +28,9 @@ def get_default_configuration_name():
 def get_variant(option):
     if "[" not in option or "]" not in option:
         return None
-    tmp = option.split("[")[1].split("]")[0]
+    if not option.endswith("]"):
+        return None
+    tmp = option.split("[", 1)[1][:-1]
     if len(tmp) == 0:
         return None
     return tmp.lower()
@@ -94,20 +100,24 @@ class OpinionatedConfigParser(configparser.ConfigParser):
         configparser.ConfigParser.__init__(self, *args, **kwargs)
 
     def read(self, *args, **kwargs):
-        configparser.ConfigParser.read(self, *args, **kwargs)
+        tmp = configparser.ConfigParser.read(self, *args, **kwargs)
         self._resolve_variant()
+        return tmp
 
     def read_dict(self, *args, **kwargs):
-        configparser.ConfigParser.read_dict(self, *args, **kwargs)
+        tmp = configparser.ConfigParser.read_dict(self, *args, **kwargs)
         self._resolve_variant()
+        return tmp
 
     def read_string(self, *args, **kwargs):
-        configparser.ConfigParser.read_string(self, *args, **kwargs)
+        tmp = configparser.ConfigParser.read_string(self, *args, **kwargs)
         self._resolve_variant()
+        return tmp
 
     def read_file(self, *args, **kwargs):
-        configparser.ConfigParser.read_file(self, *args, **kwargs)
+        tmp = configparser.ConfigParser.read_file(self, *args, **kwargs)
         self._resolve_variant()
+        return tmp
 
     def _resolve_variant(self):
         def deal_with_option(tmp, read_section, write_section, option):
