@@ -14,7 +14,11 @@ IS_PYTHON_2 = sys.version_info < (3, 0)
 
 
 def get_real_option(option):
-    return option.split("[")[0]
+    if "[" not in option:
+        return option
+    if not option.endswith("]"):
+        return option
+    return option.split("[", 1)[0]
 
 
 def get_default_configuration_name():
@@ -24,7 +28,9 @@ def get_default_configuration_name():
 def get_variant(option):
     if "[" not in option or "]" not in option:
         return None
-    tmp = option.split("[")[1].split("]")[0]
+    if not option.endswith("]"):
+        return None
+    tmp = option.split("[", 1)[1][:-1]
     if len(tmp) == 0:
         return None
     return tmp.lower()
