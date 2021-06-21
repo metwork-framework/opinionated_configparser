@@ -15,6 +15,9 @@ TEST_DICT1 = {
     },
     "section2": {
         "key3": "value5"
+    },
+    "section3": {
+        "issue8[foo]bar": "foobar"
     }
 }
 
@@ -22,6 +25,12 @@ TEST_DICT1 = {
 def test_constructor():
     x = OpinionatedConfigParser()
     assert x is not None
+
+
+def test_issue8():
+    x = OpinionatedConfigParser()
+    x.read_dict(TEST_DICT1)
+    assert x.get("section3", "issue8[foo]bar") == "foobar"
 
 
 def test_read_dict_without_inheritance():
