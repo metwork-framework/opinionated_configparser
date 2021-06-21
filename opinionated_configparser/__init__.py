@@ -100,20 +100,24 @@ class OpinionatedConfigParser(configparser.ConfigParser):
         configparser.ConfigParser.__init__(self, *args, **kwargs)
 
     def read(self, *args, **kwargs):
-        configparser.ConfigParser.read(self, *args, **kwargs)
+        tmp = configparser.ConfigParser.read(self, *args, **kwargs)
         self._resolve_variant()
+        return tmp
 
     def read_dict(self, *args, **kwargs):
-        configparser.ConfigParser.read_dict(self, *args, **kwargs)
+        tmp = configparser.ConfigParser.read_dict(self, *args, **kwargs)
         self._resolve_variant()
+        return tmp
 
     def read_string(self, *args, **kwargs):
-        configparser.ConfigParser.read_string(self, *args, **kwargs)
+        tmp = configparser.ConfigParser.read_string(self, *args, **kwargs)
         self._resolve_variant()
+        return tmp
 
     def read_file(self, *args, **kwargs):
-        configparser.ConfigParser.read_file(self, *args, **kwargs)
+        tmp = configparser.ConfigParser.read_file(self, *args, **kwargs)
         self._resolve_variant()
+        return tmp
 
     def _resolve_variant(self):
         def deal_with_option(tmp, read_section, write_section, option):
