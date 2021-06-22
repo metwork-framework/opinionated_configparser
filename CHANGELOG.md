@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [Unreleased]
+
+### Bug Fixes
+
+- fix #8
+- keep configparser read* method return value
+
 ## v0.0.5 (2020-11-23)
 
 - No interesting change
