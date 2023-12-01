@@ -4,9 +4,7 @@
 
 **Status (master branch)**
 
-
-
-[![GitHub CI](https://github.com/metwork-framework/opinionated_configparser/workflows/CI/badge.svg?branch=master)](https://github.com/metwork-framework/opinionated_configparser/actions?query=workflow%3ACI+branch%3Amaster)
+[![GitHub CI](https://github.com/metwork-framework/opinionated_configparser/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/metwork-framework/opinionated_configparser/actions?query=workflow%3ACI+branch%3Amaster)
 [![Maintenance](https://raw.githubusercontent.com/metwork-framework/resources/master/badges/maintained.svg)](https://github.com/metwork-framework/resources/blob/master/badges/maintained.svg)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/metwork-framework/opinionated_configparser/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/metwork-framework/opinionated_configparser/?branch=master)
 [![codecov](https://codecov.io/gh/metwork-framework/opinionated_configparser/branch/master/graph/badge.svg)](https://codecov.io/gh/metwork-framework/opinionated_configparser)
