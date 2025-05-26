@@ -16,7 +16,7 @@ setup(
     author="Fabien MARTY",
     author_email="fabien.marty@gmail.com",
     name="opinionated_configparser",
-    version="1.0.1",
+    version="1.0.2",
     license="MIT",
     python_requires='>=2.7',
     url="https://github.com/metwork-framework/opinionated_configparser",
@@ -30,7 +30,6 @@ setup(
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: BSD License",
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3"
     ]
