@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v1.0.2 (2025-05-26)
+
+- No interesting change
+
 ## v1.0.1 (2021-06-24)
 
 - No interesting change
